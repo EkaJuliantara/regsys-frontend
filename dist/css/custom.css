@@ -1,0 +1,53 @@
+.spacer{
+	margin: 10px 0;
+}
+
+.subtitle{
+	background: #0076bd;
+    color: #FFF;
+    padding: 5px 10px;
+}
+
+.subtitle a{
+	color: #F2F2F2;
+	font-style: italic;
+	font-size: 12px;
+	position: relative;
+    top: 1px;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd){
+	background-color: #f9f3e3 !important;
+}
+
+.table .action a{
+	margin-right: 2.5px;
+}
+
+.table .action a:first-child{
+	margin-right: 4.5px;
+}
+
+.box-solid .box-tools{
+	top: 8px;
+}
+
+.table .avatar{
+	margin: 10px 0;
+}
+
+.table .btn-action{
+	margin-top: 8px;
+}
+
+.btn-action .btn{
+	margin-right: 5px;
+}
+
+.title {
+	padding-bottom: 10px;
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
