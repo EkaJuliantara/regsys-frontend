@@ -156,22 +156,17 @@
           $http.get("http://api.ifest-uajy.com/v1/i2c/"+$scope.idTeam+"/details").then(function (response) {
             $scope.dataDocuments = response.data.data;
 
-            if(scope.dataDocuments.length != 0)
-            {
-              angular.forEach($scope.dataDocuments, function (value, key){
-                $http.get("http://api.ifest-uajy.com/v1/media/"+value.document_id).then(function (response) {
-                  value.document_name = response.data.data.file_name;
-                });
-              }); 
-              angular.forEach($scope.dataDocuments, function (value, key){
-                $http.get("http://api.ifest-uajy.com/v1/media/"+value.payment_id).then(function (response) {
-                  value.payment_name = response.data.data.file_name;
-                });
-              }); 
-            } else {
-              var row = angular.element('<td colspan="3"> Data Kosong </td>');
-              $('#detail-list').append(row);
-            }
+            angular.forEach($scope.dataDocuments, function (value, key){
+              $http.get("http://api.ifest-uajy.com/v1/media/"+value.document_id).then(function (response) {
+                value.document_name = response.data.data.file_name;
+              });
+            }); 
+            angular.forEach($scope.dataDocuments, function (value, key){
+              $http.get("http://api.ifest-uajy.com/v1/media/"+value.payment_id).then(function (response) {
+                value.payment_name = response.data.data.file_name;
+              });
+            }); 
+ 
 
             
 
