@@ -25,7 +25,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Participants</h3>
               <div class="box-tools pull-right">
-                <span class="label label-primary"><b>3</b> Participants</span>
+                <span class="label label-primary"><b>{{ dataTeam.length }}</b>  Participants</span>
               </div>
             </div>
             <!-- /.box-header -->
@@ -35,30 +35,32 @@
                 <tr>
                   <th>Nama Tim</th>
                   <th>Email</th>
-                  <th>No. Telp</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th style="width:150px;">No. Telp</th>
+                  <th style="width:150px;">Status</th>
+                  <th>Tgl Daftar</th>
+                  <th style="width:120px;">Action</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="data in dataTeam">
                   <td>{{ data.name }}</th>
                   <td>{{ data.email }}</th>
-                  <td style="width:150px;">{{ data.phone }}</th>
-                  <td style="width:200px;">
-                    <span class="label label-primary" ng-show="dataDocuments.status == 1">Diterima</span>
-                    <span class="label label-danger" ng-show="dataDocuments.status == 0">Ditolak</span>
-                    <span class="label label-warning" ng-show="dataDocuments.status == null">Transaksi Belum dilakukan</span>
+                  <td>{{ data.phone }}</th>
+                  <td>
+                    <span class="label label-{{ data.colorStatus }}">{{ data.statusIndex }} </span>
                   </td>
+                  <td>{{ data.created_at }}</td>
                   <td>
                     <a href="i2c-trailer-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a> 
-                    <button type="button" ng-show="data.status == 0 || data.status == null" class="btn btn-primary btn-xs" ng-click="updateStatus(data.id,1);" title="Diterima">
-                      <i class="fa fa-power-off"></i>
-                    </button>
-                    <button type="button" ng-show="data.status == 1 || data.status == null" class="btn btn-danger btn-xs" ng-click="updateStatus(data.id,0);" title="Proposal Ditolak">
-                      <i class="fa fa-power-off"></i>
-                    </button>
-                    <button confirmed-click="destroy()" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
+
+
+                    <button title="Status : Diterima" ng-show="data.detail[0].payment_id != null && data.detail[0].status != 1 && data.detail.length > 0" ng-click="updateStatus(1);" id="btn-update" type="button" id-team="{{ data.id }}" id-detail="{{ data.detail[0].id }}" class="btn btn-xs bg-olive"><i class="fa fa-power-off"></i></button>
+
+                    <button title="Status : Ditolak" ng-show="data.detail[0].status != 0 && data.detail.length > 0" ng-click="updateStatus(0);" id="btn-update" type="button" id-team="{{ data.id }}" id-detail="{{ data.detail[0].id }}" class="btn btn-xs btn-danger"><i class="fa fa-power-off"></i></button>
+       
+  
+
+                    <button confirmed-click="destroy();" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>

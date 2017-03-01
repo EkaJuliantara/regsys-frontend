@@ -55,13 +55,66 @@
       app.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 
         $scope.idTeam = "";
+        $scope.idDetail = "";
         $scope.dataTeam = {};
+        $scope.dataDocuments = [];
+        $scope.dataDetail = {};
 
         $scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
 
         $scope.index = function () {
           $http.get("http://api.ifest-uajy.com/v1/i2c?category="+$scope.category).then(function (response) {
             $scope.dataTeam = response.data.data;
+            angular.forEach($scope.dataTeam, function(value,key) {
+              $http.get("http://api.ifest-uajy.com/v1/i2c/"+value.id+"/details").then(function (response) {
+                value.detail = response.data.data;
+                if (value.detail.length != 0) {
+                  var looping = true;
+                  for (var i = 0; i < value.detail.length && looping != false; i++) {
+                    if(value.detail[i].status != null) 
+                    {
+                      if (value.detail[i].status != 0) 
+                      {
+                        if (value.detail[i].payment_id != null) {
+                          value.colorStatus = "success";
+                          value.statusIndex = "Transaksi Data Lengkap";
+                        } else {
+                          value.colorStatus = "info";
+                          value.statusIndex = "Menunggu Pembayaran";
+                          looping = false;
+                        }
+                      } else {
+                        value.colorStatus = "danger";
+                        value.statusIndex = "Proposal Ditolak";
+                        looping = false;
+                      }
+                    } else {
+                      value.colorStatus = "warning";
+                      value.statusIndex = "Menunggu Verifikasi";
+                      looping = false;
+                    }
+                  }
+                } else {
+                  value.colorStatus = "danger";
+                  value.statusIndex = "Data Kosong";
+                }
+              });
+            });
+          });
+        }
+
+        $scope.updateStatus = function (status) {
+
+          $scope.dataDetail['status'] = status;
+          $scope.idTeam = $('#btn-update').attr('id-team');
+          $scope.idDetail = $('#btn-update').attr('id-detail');
+          $http({
+            method : 'PATCH',
+            url    : 'http://api.ifest-uajy.com/v1/i2c/'+$scope.idTeam+'/detail/'+$scope.idDetail,
+            data   : $.param($scope.dataDetail),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+          }).then(function (data) {
+            $scope.index();
           });
         }
 
@@ -73,7 +126,9 @@
             $scope.index();
           });
         }
+
         $scope.index();
+    
       });
 
       app.controller('getCtrl', function($scope, $http) {
@@ -81,7 +136,7 @@
 
         $scope.index = function () {
           $http.get("http://api.ifest-uajy.com/v1/i2c/"+$scope.idTeam).then(function (response) {
-          $scope.dataTeam = response.data.data;
+            $scope.dataTeam = response.data.data;
           });
         }
 
@@ -101,16 +156,24 @@
           $http.get("http://api.ifest-uajy.com/v1/i2c/"+$scope.idTeam+"/details").then(function (response) {
             $scope.dataDocuments = response.data.data;
 
-            angular.forEach($scope.dataDocuments, function (value, key){
-              $http.get("http://api.ifest-uajy.com/v1/media/"+value.document_id).then(function (response) {
-                value.document_name = response.data.data.file_name;
-              });
-            }); 
-            angular.forEach($scope.dataDocuments, function (value, key){
-              $http.get("http://api.ifest-uajy.com/v1/media/"+value.payment_id).then(function (response) {
-                value.payment_name = response.data.data.file_name;
-              });
-            }); 
+            if(scope.dataDocuments.length != 0)
+            {
+              angular.forEach($scope.dataDocuments, function (value, key){
+                $http.get("http://api.ifest-uajy.com/v1/media/"+value.document_id).then(function (response) {
+                  value.document_name = response.data.data.file_name;
+                });
+              }); 
+              angular.forEach($scope.dataDocuments, function (value, key){
+                $http.get("http://api.ifest-uajy.com/v1/media/"+value.payment_id).then(function (response) {
+                  value.payment_name = response.data.data.file_name;
+                });
+              }); 
+            } else {
+              var row = angular.element('<td colspan="3"> Data Kosong </td>');
+              $('#detail-list').append(row);
+            }
+
+            
 
           });
         }

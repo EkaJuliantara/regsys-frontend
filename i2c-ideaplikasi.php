@@ -25,7 +25,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">Participants</h3>
               <div class="box-tools pull-right">
-                <span class="label label-primary"><b>3</b> Participants</span>
+                <span class="label label-primary"><b>{{ dataTeam.length }}</b>  Participants</span>
               </div>
             </div>
             <!-- /.box-header -->
@@ -47,15 +47,13 @@
                   <td>{{ data.email }}</td>
                   <td>{{ data.origin }}</td>
                   <td style="width:150px;">{{ data.phone }}</td>
-                  <td style="width:80px;">
-                    <span ng-show="data.status == 1" class="label label-success">Active</span>
-                    <span ng-show="data.status == 0" class="label label-danger">Non Active</span>
+                  <td style="width:150px;">
+                    <span class="label label-{{ data.colorStatus }}">{{ data.statusIndex }}</span>
                   </td>
                   <td>
                     <a href="i2c-ideaplikasi-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a> 
-                    <a title="Aktifkan"><button type="button" class="btn btn-xs btn-primary"><i class="fa fa-power-off"></i></button></a> 
-                    <!-- <a href="#" title="Aktifkan"><button type="button" class="btn btn-xs btn-danger"><i class="fa fa-power-off"></i></button></a>  -->
-                    <a title="Remove"><button confirmed-click="destroy()" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button></a>
+
+                    <button title="Remove" confirmed-click="destroy()" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>

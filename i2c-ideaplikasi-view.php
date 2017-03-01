@@ -72,7 +72,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr ng-repeat="data in dataDocuments">
+                    <tr ng-show="dataDocuments.length == 0">
+                        <td colspan="4" style="text-align: center;">
+                          <i style="font-size: 40px; color: #c0392b;" class="glyphicon glyphicon-remove-sign"></i>
+                          <h3>Tidak Ada Dokumen</h3>
+                        </td>
+                      </tr>
+                    <tr ng-show="dataDocuments.length != 0" ng-repeat="data in dataDocuments">
                       <td><a href="http://api.ifest-uajy.com/storage/media/{{ data.document_name }}" target="_blank">Lihat</a></td>
                       <td>
                         <span ng-if="data.payment_id != null">
@@ -83,7 +89,7 @@
                         <span ng-show="data.payment_id == null" class="label label-warning">Tidak ada</span>
                       </td>
                       
-                      <td width="150px">
+                      <td width="250px">
                         <span ng-show="data.status == 1">Diterima</span>
                         <span ng-show="data.status == 0">Ditolak</span>
                         <span ng-show="data.status == null">Menunggu verifikasi...</span>
@@ -103,21 +109,29 @@
               </div>
 
               <div class="form-body">
-                <h3>Anggota tim</h3>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Nama</th>
-                      <th>Kartu Identitas</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="data in dataMembers">
-                      <td>{{ data.full_name }}</td>
-                      <td><a href="http://api.ifest-uajy.com/storage/media/{{ data.media_name }}" target="_blank"><button type="button" class="btn btn-primary btn-xs">Tersedia</button></a></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="col-sm-8">
+                  <h3>Anggota tim</h3>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Nama</th>
+                        <th width="200px">Kartu Identitas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-show="dataMembers.length == 0">
+                        <td colspan="2" style="text-align: center;">
+                          <i style="font-size: 40px; color: #c0392b;" class="glyphicon glyphicon-remove-sign"></i>
+                          <h3>Tidak Ada Anggota</h3>
+                        </td>
+                      </tr>
+                      <tr ng-show="dataMembers.length != 0" ng-repeat="data in dataMembers">
+                        <td>{{ data.full_name }}</td>
+                        <td><a href="http://api.ifest-uajy.com/storage/media/{{ data.media_name }}" target="_blank"><button type="button" class="btn btn-primary btn-xs">Tersedia</button></a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

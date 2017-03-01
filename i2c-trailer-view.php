@@ -60,15 +60,19 @@
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th>Proposal</th>
                         <th>Bukti Pembayaran</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="data in dataDocuments">
-                        <td><a href="http://api.ifest-uajy.com/storage/media/{{ data.document_name }}" target="_blank">Lihat</a></td>
+                      <tr ng-show="dataDocuments.length == 0">
+                        <td colspan="3" style="text-align: center;">
+                          <i style="font-size: 40px; color: #c0392b;" class="glyphicon glyphicon-remove-sign"></i>
+                          <h3>Tidak Ada Dokumen</h3>
+                        </td>
+                      </tr>
+                      <tr ng-show="dataDocuments.length != 0" ng-repeat="data in dataDocuments">
                         <td>
                           <span ng-if="data.payment_id != null">
                             <a href="http://api.ifest-uajy.com/storage/media/{{ data.payment_name }}" target="_blank">
@@ -102,11 +106,17 @@
                     <thead>
                       <tr>
                         <th>Nama</th>
-                        <th>Kartu Identitas</th>
+                        <th width="200px">Kartu Identitas</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="data in dataMembers">
+                      <tr ng-show="dataMembers.length == 0">
+                        <td colspan="2" style="text-align: center;">
+                          <i style="font-size: 40px; color: #c0392b;" class="glyphicon glyphicon-remove-sign"></i>
+                          <h3>Tidak Ada Anggota</h3>
+                        </td>
+                      </tr>
+                      <tr ng-show="dataMembers != 0" ng-repeat="data in dataMembers">
                         <td>{{ data.full_name }}</td>
                         <td width="150px" style="text-align: center;"><a href="http://api.ifest-uajy.com/storage/media/{{ data.media_name }}" target="_blank"><button type="button" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></button></a></td>
                       </tr>
