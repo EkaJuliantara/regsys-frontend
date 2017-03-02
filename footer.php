@@ -118,6 +118,14 @@
           });
         }
 
+        $scope.destroy = function(id) {
+
+          //$scope.idTeam = $('#btn-destroy').attr('id-team');
+          $http.delete("http://api.ifest-uajy.com/v1/i2c/"+id).then(function (response) {
+            $scope.index();
+          });
+        }
+
         $scope.index();
     
       });
