@@ -60,7 +60,7 @@
        
   
 
-                    <button confirmed-click="destroy();" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
+                    <button confirmed-click="destroy(data.id);" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>
