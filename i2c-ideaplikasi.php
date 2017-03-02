@@ -53,7 +53,7 @@
                   <td>
                     <a href="i2c-ideaplikasi-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a> 
 
-                    <button title="Remove" confirmed-click="destroy()" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
+                    <button title="Remove" confirmed-click="destroy( {{ data.id }})" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>

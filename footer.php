@@ -118,11 +118,11 @@
           });
         }
 
-        $scope.destroy = function() {
+        $scope.destroy = function(id) {
 
           $scope.idTeam = $('#btn-destroy').attr('id-team');
 
-          $http.delete("http://api.ifest-uajy.com/v1/i2c/"+$scope.idTeam).then(function (response) {
+          $http.delete("http://api.ifest-uajy.com/v1/i2c/"+id).then(function (data) {
             $scope.index();
           });
         }
