@@ -59,11 +59,8 @@
                     <button title="Status : Ditolak" ng-show="data.detail[0].status != 0 && data.detail.length > 0" ng-click="updateStatus(0);" id="btn-update" type="button" id-team="{{ data.id }}" id-detail="{{ data.detail[0].id }}" class="btn btn-xs btn-danger"><i class="fa fa-power-off"></i></button>
        
 
-<<<<<<< HEAD
-                    <button title="Remove" confirmed-click="destroy( {{ data.id }})" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
-=======
                     <button confirmed-click="destroy(data.id);" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
->>>>>>> origin/master
+
                   </td>
                 </tr>
               </tbody>

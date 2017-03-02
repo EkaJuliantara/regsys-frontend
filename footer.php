@@ -118,19 +118,6 @@
           });
         }
 
-        $scope.destroy = function(id) {
-
-          //$scope.idTeam = $('#btn-destroy').attr('id-team');
-
-<<<<<<< HEAD
-          $http.delete("http://api.ifest-uajy.com/v1/i2c/"+id).then(function (data) {
-=======
-          $http.delete("http://api.ifest-uajy.com/v1/i2c/"+id).then(function (response) {
->>>>>>> origin/master
-            $scope.index();
-          });
-        }
-
         $scope.index();
     
       });
