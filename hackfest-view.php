@@ -1,7 +1,11 @@
 <?php require_once('header.php'); ?>
 
+<?php
+  $idTeam =  $_GET['id'];
+?>
+
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div ng-app="hackfestApp" ng-init="idTeam=<?= $idTeam ?>" class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
@@ -15,106 +19,104 @@
   </section>
 
   <!-- Main content -->
-  <section class="content">
-
-    <!-- Your Page Content Here -->
+  <section ng-controller="getCtrl" class="content">
     <div class="row">
-      <div class="col-md-12">
-        <div class="box box-solid box-success">
+      <div class="col-sm-12">
+        <div class="box box-success box-solid">
           <div class="box-header with-border">
-            <h3 class="box-title">View Participant</h3>
-          </div><!-- /.box-header -->
+            <h3 class="box-title">Participants</h3>
+          </div>
           <div class="box-body">
-            <table class="table">
-              <tr>
-                <th style="width: 15%;">Status</th>
-                <td><span class="label label-success">Active</span></td>
-              </tr>
-              <tr>
-                <th>Phone</th>
-                <td>085792658145</td>
-              </tr>
-              <tr>
-                <th>Email</th>
-                <td>ottobimahp.9F28@yahoo.com</td>
-              </tr>
-              <tr>
-                <th>College</th>
-                <td>SMK Negeri 1 Denpasar</td>
-              </tr>
-              <tr>
-                <th>Date/Time Register</th>
-                <td>2016-04-18 04:43:21</td>
-              </tr>
-              <tr>
-                <th>Team Name</th>
-                <td>Knight</td>
-              </tr>
-              <tr>
-                <th>Membership File</th>
-                <td><span class="label label-default">File not found</span></td>
-              </tr>
-              <!--<tr>
-                <th></th>
-                <td>
-                  <div class="btn-action">
-                    <a class="btn btn-danger" href="#" role="button" data-toggle="modal" data-target=".bs-remove-modal-sm"><i class="fa fa-times"></i> Remove</a>
-                    <a class="btn btn-warning" href="upc.html" role="button"><i class="fa fa-reply"></i> Cancel</a>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <div class="row">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <th>Nama Tim</th>
+                          <td>{{ dataTeam.name }}</td>
+                        </tr>
+                        <tr>
+                          <th>Email</th>
+                          <td>{{ dataTeam.email }}</td>
+                        </tr>
+                        <tr>
+                          <th>No. Telp</th>
+                          <td>{{ dataTeam.phone }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                </td>
-              </tr>-->
-            </table><!-- /.table -->
-            <h3 class="title">Member</h3>
-            <table class="table table-bordered">
-              <thead>
-                  <tr>
-                      <th>NPM</th>
-                      <th>Nama Mahasiswa</th>
-                      <th>Telpon/HP</th>
-                  </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>140707863</td>
-                  <td>Christian Angel Eman</td>
-                  <td>082396720321</td>
-                </tr>
-                <tr>
-                  <td>140707860</td>
-                  <td>Robertus Tri Uji. P. Atmaja</td>
-                  <td>085647923825</td>
-                </tr>
-                <tr>
-                  <td>140707923</td>
-                  <td>Pieter Madyo Atmojo</td>
-                  <td>085338829797</td>
-                </tr>
-              </tbody>
-            </table>
-          </div><!-- /.box-body -->
-        </div><!-- /.box -->
-      </div><!-- /.col-md-12 -->
-    </div><!-- /.row -->
-
-    <!-- Remove modal -->
-    <div class="modal fade bs-remove-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Warning!</h4>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure to remove this item?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-reply"></i> Cancel</button>
-            <button type="button" class="btn btn-danger"><i class="fa fa-times"></i> Remove</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <div class="row">
+                    <h3>Detail</h3>
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Proposal</th>
+                          <th>Pembayaran</th>
+                          <th>Status</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- <tr ng-show="">
+                          <td colspan="3" style="text-align: center;">
+                            <i style="font-size: 40px; color: #c0392b;" class="glyphicon glyphicon-remove-sign"></i>
+                            <h3>Tidak Ada Dokumen</h3>
+                          </td>
+                        </tr> -->
+                        <tr ng-show="">
+                          <td>
+                            <a href=""><span class="label label-primary">Lihat</span></a>
+                          </td>
+                          <td>
+                            <a href=""><span class="label label-primary">Lihat</span></a>
+                            <span class="label label-warning">Tidak Ada</span>
+                          </td>
+                          <td>
+                            <span class="label label-success">Diterima</span>
+                            <span class="label label-danger">Ditolak</span>
+                          </td>
+                          <td>
+                            <button class="btn btn-xs btn-success" title="Diterima"><i class="fa fa-power-off"></i></button>
+                            <button class="btn btn-xs btn-danger" title="Ditolak"><i class="fa fa-power-off"></i></button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-8">
+                  <div class="row">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Nama</th>
+                        <th>Kartu Identitas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Col 1</td>
+                        <td><a href=""><span class="label label-primary">Lihat</span></a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
