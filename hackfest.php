@@ -1,3 +1,9 @@
+<?php
+  ob_start();
+  session_start();
+  if ($_SESSION['hackfest']['id']) {
+?>
+
 <?php require_once('header.php'); ?>
 
 <div ng-app="hackfestApp" ng-init="category=1" class="content-wrapper">
@@ -73,3 +79,9 @@
 </div>
 
 <?php require_once('footer.php'); ?>
+
+<?php
+  }else{
+    header("location: login.php");
+  }
+?>

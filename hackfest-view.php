@@ -1,3 +1,9 @@
+<?php
+  ob_start();
+  session_start();
+  if ($_SESSION['hackfest']['id']) {
+?>
+
 <?php require_once('header.php'); ?>
 
 <?php
@@ -121,3 +127,9 @@
 </div><!-- /.content-wrapper -->
 
 <?php require_once('footer.php'); ?>
+
+<?php
+  }else{
+    header("location: login.php");
+  }
+?>

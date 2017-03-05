@@ -16,11 +16,6 @@
     <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/s/bs/jq-2.1.4,dt-1.10.10/datatables.min.js"></script>
-    <script>
-      /*$(document).ready(function(){
-          $('#peserta').DataTable();
-      });*/
-    </script>
     <!-- Bootstrap 3.3.5 -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
