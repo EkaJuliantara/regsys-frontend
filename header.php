@@ -75,7 +75,7 @@
                       <a href="#" class="btn btn-default btn-flat">Edit profile</a>
                     </div>-->
                     <div class="text-center">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
                 </ul>
@@ -96,7 +96,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="index.php"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a></li>
             <li><a href="hackfest.php"><i class="fa fa-circle-o"></i> <span>HackFEST</span></a></li>
-            <li class="treeview">
+            <li class="treeview active">
               <a href="#"><i class="fa fa-circle-o"></i> <span>I2C</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="i2c-trailer.php">Trailer</a></li>
