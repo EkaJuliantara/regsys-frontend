@@ -1,5 +1,5 @@
-
 var i2cApp = angular.module('i2cApp', ['datatables']);
+var base_url = 'http://api.ifest-uajy.com/v1';
 
 i2cApp.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
@@ -31,10 +31,10 @@ i2cApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
   $scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
 
   $scope.index = function () {
-    $http.get("http://api.ifest-uajy.com/v1/i2c?category="+$scope.category).then(function (response) {
+    $http.get(base_url+"/i2c?category="+$scope.category).then(function (response) {
       $scope.dataTeam = response.data.data;
       angular.forEach($scope.dataTeam, function(value,key) {
-        $http.get("http://api.ifest-uajy.com/v1/i2c/"+value.id+"/details").then(function (response) {
+        $http.get(base_url+"/i2c/"+value.id+"/details").then(function (response) {
           value.detail = response.data.data;
           if (value.detail.length != 0) {
             var looping = true;
@@ -78,7 +78,7 @@ i2cApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
     $scope.idDetail = $('#btn-update').attr('id-detail');
     $http({
       method : 'PATCH',
-      url    : 'http://api.ifest-uajy.com/v1/i2c/'+$scope.idTeam+'/detail/'+$scope.idDetail,
+      url    : base_url+'/i2c/'+$scope.idTeam+'/detail/'+$scope.idDetail,
       data   : $.param($scope.dataDetail),
       headers: { 'Content-Type': 'i2cApplication/x-www-form-urlencoded' }
     }).then(function (data) {
@@ -89,7 +89,7 @@ i2cApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
   $scope.destroy = function(id) {
 
     //$scope.idTeam = $('#btn-destroy').attr('id-team');
-    $http.delete("http://api.ifest-uajy.com/v1/i2c/"+id).then(function (response) {
+    $http.delete(base_url+"/i2c/"+id).then(function (response) {
       $scope.index();
     });
   }
@@ -102,17 +102,17 @@ i2cApp.controller('getCtrl', function($scope, $http) {
   $scope.dataDetail = {};
 
   $scope.index = function () {
-    $http.get("http://api.ifest-uajy.com/v1/i2c/"+$scope.idTeam).then(function (response) {
+    $http.get(base_url+"/i2c/"+$scope.idTeam).then(function (response) {
       $scope.dataTeam = response.data.data;
     });
   }
 
   $scope.getMembers = function () {
-    $http.get("http://api.ifest-uajy.com/v1/i2c/"+$scope.idTeam+"/members").then(function (response) {
+    $http.get(base_url+"/i2c/"+$scope.idTeam+"/members").then(function (response) {
       $scope.dataMembers = response.data.data;
 
       angular.forEach($scope.dataMembers, function (value, key){
-        $http.get("http://api.ifest-uajy.com/v1/media/"+value.media_id).then(function (response) {
+        $http.get(base_url+"/media/"+value.media_id).then(function (response) {
           value.media_name = response.data.data.file_name;
         });
       });
@@ -120,16 +120,16 @@ i2cApp.controller('getCtrl', function($scope, $http) {
   }
 
   $scope.getDocuments = function () {
-    $http.get("http://api.ifest-uajy.com/v1/i2c/"+$scope.idTeam+"/details").then(function (response) {
+    $http.get(base_url+"/i2c/"+$scope.idTeam+"/details").then(function (response) {
       $scope.dataDocuments = response.data.data;
 
       angular.forEach($scope.dataDocuments, function (value, key){
-        $http.get("http://api.ifest-uajy.com/v1/media/"+value.document_id).then(function (response) {
+        $http.get(base_url+"/media/"+value.document_id).then(function (response) {
           value.document_name = response.data.data.file_name;
         });
       }); 
       angular.forEach($scope.dataDocuments, function (value, key){
-        $http.get("http://api.ifest-uajy.com/v1/media/"+value.payment_id).then(function (response) {
+        $http.get(base_url+"/media/"+value.payment_id).then(function (response) {
           value.payment_name = response.data.data.file_name;
         });
       }); 
@@ -146,7 +146,7 @@ i2cApp.controller('getCtrl', function($scope, $http) {
 
     $http({
       method : 'PATCH',
-      url    : 'http://api.ifest-uajy.com/v1/i2c/'+$scope.idTeam+'/detail/'+id,
+      url    : base_url+'/i2c/'+$scope.idTeam+'/detail/'+id,
       data   : $.param($scope.dataDetail),
       headers: { 'Content-Type': 'i2cApplication/x-www-form-urlencoded' }
     }).then(function (data) {

@@ -1,4 +1,5 @@
 var hackfestApp = angular.module('hackfestApp', ['datatables']);
+var base_url = 'http://api.ifest-uajy.com/v1';
 
 hackfestApp.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
@@ -14,7 +15,7 @@ hackfestApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder){
 	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
 
 	$scope.index = function () {
-		$http.get("http://127.0.0.1:8000/v1/hackfest?category="+$scope.category).then( function (response) {
+		$http.get(base_url+"/hackfest?category="+$scope.category).then( function (response) {
 			$scope.dataIndex = response.data.data;
 		});
 	}
@@ -25,7 +26,7 @@ hackfestApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder){
 
 		$http({
 			method 	: 'PATCH',
-			url		: 'http://127.0.0.1:8000/v1/hackfest/'+id,
+			url		: base_url+'/hackfest/'+id,
 			data 	: $.param($scope.dataDetail),
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 		}).then( function (data) {
@@ -39,7 +40,7 @@ hackfestApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder){
 
 		$http({
 			method 	: 'PATCH',
-			url		: 'http://127.0.0.1:8000/v1/hackfest/'+id,
+			url		: base_url+'/hackfest/'+id,
 			data 	: $.param($scope.dataDetail),
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 		}).then( function (data) {
@@ -48,7 +49,7 @@ hackfestApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder){
 	}
 
 	$scope.destroy = function (id) {
-		$http.delete("http://127.0.0.1:8000/v1/hackfest/"+id).then( function(response) {
+		$http.delete(base_url+"/hackfest/"+id).then( function(response) {
 			$scope.index();
 		});
 	}
@@ -65,19 +66,19 @@ hackfestApp.controller('getCtrl', function($scope, $http) {
 	$scope.dataStatus = {};
 
 	$scope.index = function () {
-		$http.get("http://127.0.0.1:8000/v1/hackfest/"+$scope.idTeam).then( function (response) {
+		$http.get(base_url+"/hackfest/"+$scope.idTeam).then( function (response) {
 			$scope.dataTeam = response.data.data;
 		});
 	}
 
 	$scope.getMembers = function () {
-		$http.get('http://127.0.0.1:8000/v1/hackfest/'+$scope.idTeam+'/members').then(function (response) {
+		$http.get(base_url+'/hackfest/'+$scope.idTeam+'/members').then(function (response) {
 			$scope.dataMember = response.data.data;
 			angular.forEach($scope.dataMember, function (value, key) {
-				$http.get('http://127.0.0.1:8000/v1/media/'+value.student_id_scan).then(function (response) {
+				$http.get(base_url+'/media/'+value.student_id_scan).then(function (response) {
 					value.student_name = response.data.data.file_name;
 				});
-				$http.get('http://127.0.0.1:8000/v1/media/'+value.media_id).then(function (response) {
+				$http.get(base_url+'/media/'+value.media_id).then(function (response) {
 					value.media_name = response.data.data.file_name;
 				});
 
@@ -87,10 +88,10 @@ hackfestApp.controller('getCtrl', function($scope, $http) {
 
 	$scope.getDocuments = function () {
 		angular.forEach($scope.dataTeam, function (value, key) {
-			$http.get('http://127.0.0.1:8000/v1/media/'+value.proposal).then(function (response) {
+			$http.get(base_url+'/media/'+value.proposal).then(function (response) {
 				value.proposal_name = response.data.data.file_name;
 			});
-			$http.get('http://127.0.0.1:8000/v1/media/'+value.receipt).then(function (response) {
+			$http.get(base_url+'/media/'+value.receipt).then(function (response) {
 				value.receipt_name = response.data.data.file_name;
 			});
 		});
@@ -105,7 +106,7 @@ hackfestApp.controller('getCtrl', function($scope, $http) {
 
 		$http({
 			method 	: 'PATCH',
-			url		: 'http://127.0.0.1:8000/v1/hackfest/'+$scope.idTeam,
+			url		: base_url+'/hackfest/'+$scope.idTeam,
 			data 	: $.param($scope.dataDetail),
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 		}).then( function (data) {
@@ -119,7 +120,7 @@ hackfestApp.controller('getCtrl', function($scope, $http) {
 
 		$http({
 			method 	: 'PATCH',
-			url		: 'http://127.0.0.1:8000/v1/hackfest/'+$scope.idTeam,
+			url		: base_url+'/hackfest/'+$scope.idTeam,
 			data 	: $.param($scope.dataDetail),
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 		}).then( function (data) {
