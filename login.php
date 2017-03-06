@@ -70,7 +70,6 @@
 
 <!-- AngularJS -->
 <script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-datatables/demo/src/archives/dist/angular-datatables.js"></script>
 
 <script>
 
@@ -90,7 +89,7 @@ loginApp.controller("loginCtrl", function($scope, $http, $window) {
 
     $http({
       method  : 'POST',
-      url     : 'http://127.0.0.1:8000/v1/user/login',
+      url     : 'http://api.ifest-uajy.com/v1/user/login',
       data    : $.param($scope.formData),
       headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
      })
