@@ -51,9 +51,17 @@
                   <td>{{ data.email }}</td>
                   <td>{{ data.phone }}</td>
                   <td>
-                    <span ng-show="data.status == 1" class="label label-primary">Aktif</span>
-                    <span ng-show="data.status == 0" class="label label-danger">Ditolak</span>
-                    <span ng-show="data.status == null" class="label label-warning">Menunggu Verifikasi..</span>
+                    <span ng-show="data.status == 1 &&  data.proposal != null && (data.receipt != null || data.confirmed == 1)" class="label label-primary">Data Lengkap</span>
+
+                    <span ng-show="data.status == 1 &&  data.proposal != null && (data.receipt == null && data.confirmed == 0)" class="label label-danger">Menunggu Pembayaran</span>
+
+                    <span ng-show="data.status == null &&  data.proposal != null && (data.receipt == null && data.confirmed == 0)" class="label label-danger" class="label label-warning">Menunggu Verifikasi..</span>
+
+                    <span ng-show="data.status == 0 &&  data.proposal != null" class="label label-danger" class="label label-warning">Proposal diTolak</span>
+
+                    <span ng-show="data.proposal == null" class="label label-warning">Data Kosong</span>
+
+
                   </td>
                   <td>{{ data.created_at }}</td>
                   <td>
@@ -62,6 +70,8 @@
                     <button title="Status:Diterima" ng-show="data.status != 1" ng-click="updateStatus(data.id, 1);" class="btn btn-xs btn-info"><i class="fa fa-power-off"></i></button>
 
                     <button title="Status:Ditolak" ng-show="data.status == 1" ng-click="updateStatus(data.id, 0);" class="btn btn-xs btn-warning"><i class="fa fa-power-off"></i></button>
+
+                    <button ng-show="data.confirmed != 1 && data.receipt == null" ng-click="confirmPayment(data.id)" ng-show="data.confirmed != 1" class="btn btn-xs btn-info" title="Bayar diTempat"><i class="glyphicon glyphicon-ok"></i></button>
 
                     <button ng-click="destroy(data.id);" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
 
