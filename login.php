@@ -70,7 +70,7 @@
 
 <!-- AngularJS -->
 <script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-datatables/angular-datatables.min.js"></script>
+<script src="bower_components/angular-datatables/demo/src/archives/dist/angular-datatables.js"></script>
 
 <script>
 
