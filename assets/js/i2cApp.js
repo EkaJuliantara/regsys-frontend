@@ -1,5 +1,6 @@
 var i2cApp = angular.module('i2cApp', ['datatables']);
 var base_url = 'http://api.ifest-uajy.com/v1';
+// var base_url = 'http://127.0.0.1:8000/v1';
 
 i2cApp.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
@@ -71,20 +72,45 @@ i2cApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
     });
   }
 
-  $scope.updateStatus = function (status) {
+  // $scope.updateStatus = function (status) {
+
+  //   $scope.dataDetail['status'] = status;
+  //   $http({
+  //     method : 'PATCH',
+  //     url    : base_url+'/i2c/'+$scope.idTeam+'/detail/'+$scope.idDetail,
+  //     data   : $.param($scope.dataDetail),
+  //     headers: { 'Content-Type': 'i2cApplication/x-www-form-urlencoded' }
+  //   }).then(function (data) {
+  //     $scope.index();
+  //   });
+  // }
+
+  $scope.updateStatus = function (id, detail, status) {
 
     $scope.dataDetail['status'] = status;
-    $scope.idTeam = $('#btn-update').attr('id-team');
-    $scope.idDetail = $('#btn-update').attr('id-detail');
     $http({
-      method : 'PATCH',
-      url    : base_url+'/i2c/'+$scope.idTeam+'/detail/'+$scope.idDetail,
-      data   : $.param($scope.dataDetail),
-      headers: { 'Content-Type': 'i2cApplication/x-www-form-urlencoded' }
-    }).then(function (data) {
+      method  : 'PATCH',
+      url     : base_url+'/i2c/'+id+'/detail/'+detail,
+      data    : $.param($scope.dataDetail),
+      headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then( function (data) {
       $scope.index();
     });
   }
+
+  $scope.createStatus = function (id, status) {
+
+    $scope.dataDetail['status'] = status;
+    $http({
+      method  : 'POST',
+      url     : base_url+'/i2c/'+id+'/detail',
+      data    : $.param($scope.dataDetail),
+      headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then( function (data) {
+      $scope.index();
+    });
+  }
+
 
   $scope.destroy = function(id) {
 
@@ -145,14 +171,13 @@ i2cApp.controller('getCtrl', function($scope, $http) {
     $scope.dataDetail['status'] = status;
 
     $http({
-      method : 'PATCH',
-      url    : base_url+'/i2c/'+$scope.idTeam+'/detail/'+id,
-      data   : $.param($scope.dataDetail),
-      headers: { 'Content-Type': 'i2cApplication/x-www-form-urlencoded' }
-    }).then(function (data) {
+      method  : 'PATCH',
+      url   : base_url+'/i2c/'+$scope.idTeam+'/detail/'+id,
+      data  : $.param($scope.dataDetail),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then( function (response) {
       $scope.getDocuments();
     });
-
   }
 
 

@@ -1,5 +1,6 @@
 var hackfestApp = angular.module('hackfestApp', ['datatables']);
 var base_url = 'http://api.ifest-uajy.com/v1';
+// var base_url = 'http://127.0.0.1:8000/v1';
 
 hackfestApp.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);

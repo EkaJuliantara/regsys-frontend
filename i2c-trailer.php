@@ -53,17 +53,35 @@
                     <td>{{ data.email }}</td>
                     <td>{{ data.phone }}</td>
                     <td>
-                      <span class="label label-{{ data.colorStatus }}">{{ data.statusIndex }} </span>
+                      <span ng-hide="data.detail[0].payment_id == null && data.detail[0].status == 1" class="label label-{{ data.colorStatus }}">{{ data.statusIndex }} </span>
+                      <span ng-show="data.detail[0].payment_id == null && data.detail[0].status == 1" class="label label-success">Bayar di stand </span>
                     </td>
                     <td>{{ data.created_at }}</td>
                     <td>
                       <a href="i2c-trailer-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a> 
 
+                      <i ng-hide="data.detail[0].payment_id == null && data.detail[0].status == 1">
+                        <button title="Status : Diterima" id="btn-update" 
+                                ng-show="data.detail[0].payment_id != null && data.detail[0].status != 1 && data.detail.length > 0"
+                                ng-click="updateStatus(data.id,data.detail[0].id,1)" 
+                                type="button" class="btn btn-xs btn-info">
+                                <i class="fa fa-power-off"></i>
+                        </button>
 
-                      <button title="Status : Diterima" ng-show="data.detail[0].payment_id != null && data.detail[0].status != 1 && data.detail.length > 0" ng-click="updateStatus(1);" id="btn-update" type="button" id-team="{{ data.id }}" id-detail="{{ data.detail[0].id }}" class="btn btn-xs btn-info"><i class="fa fa-power-off"></i></button>
+                        <button title="Status : Ditolak" id="btn-update" 
+                                ng-show="data.detail[0].status != 0 && data.detail.length > 0"
+                                ng-click="updateStatus(data.id,data.detail[0].id,0)" 
+                                type="button" class="btn btn-xs btn-danger">
+                                <i class="fa fa-power-off"></i>
+                        </button>                
+                      </i>
 
-                      <button title="Status : Ditolak" ng-show="data.detail[0].status != 0 && data.detail.length > 0" ng-click="updateStatus(0);" id="btn-update" type="button" id-team="{{ data.id }}" id-detail="{{ data.detail[0].id }}" class="btn btn-xs btn-danger"><i class="fa fa-power-off"></i></button>
-         
+                      <button title="Status : Bayar di Stand" id="btn-update" 
+                              ng-show="data.detail.length == 0"
+                              ng-click="createStatus(data.id,1)" 
+                              type="button" class="btn btn-xs bg-orange btn-flat">
+                              <i class="glyphicon glyphicon-ok"></i>
+                      </button>
 
                       <button confirmed-click="destroy(data.id);" ng-confirm-click="Apakah anda yakin menghapus ini?" id="btn-destroy" id-team="{{ data.id }}" type="button" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
 
