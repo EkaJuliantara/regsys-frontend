@@ -6,7 +6,7 @@
 
 <?php require_once('header.php'); ?>
 
-<div ng-app="hackfestApp" ng-init="category=1" class="content-wrapper">
+<div ng-app="hackfestApp" class="content-wrapper">
 
   <section class="content-header">
     <h1>
@@ -59,19 +59,20 @@
 
                     <span ng-show="data.status == 0 &&  data.proposal != null" class="label label-danger" class="label label-warning">Proposal diTolak</span>
 
-                    <span ng-show="data.proposal == null" class="label label-warning">Data Kosong</span>
+                    <span ng-show="data.proposal == null" class= "label label-warning">Data Kosong</span>
 
+    
 
                   </td>
                   <td>{{ data.created_at }}</td>
                   <td>
                     <a href="hackfest-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a> 
                     
-                    <button title="Status:Diterima" ng-show="data.status != 1" ng-click="updateStatus(data.id, 1);" class="btn btn-xs btn-info"><i class="fa fa-power-off"></i></button>
+                    <button title="Status:Diterima" ng-show="data.proposal != null && data.status != 1" ng-click="updateStatus(data.id, 1);" class="btn btn-xs btn-info"><i class="fa fa-power-off"></i></button>
 
-                    <button title="Status:Ditolak" ng-show="data.status == 1" ng-click="updateStatus(data.id, 0);" class="btn btn-xs btn-warning"><i class="fa fa-power-off"></i></button>
+                    <button title="Status:Ditolak" ng-show="data.proposal != null && data.status == 1" ng-click="updateStatus(data.id, 0);" class="btn btn-xs btn-warning"><i class="fa fa-power-off"></i></button>
 
-                    <button ng-show="data.confirmed != 1 && data.receipt == null" ng-click="confirmPayment(data.id)" ng-show="data.confirmed != 1" class="btn btn-xs btn-info" title="Bayar diTempat"><i class="glyphicon glyphicon-ok"></i></button>
+                    <button ng-show="data.proposal != null && data.confirmed != 1 && data.receipt == null" ng-click="confirmPayment(data.id)" ng-show="data.confirmed != 1" class="btn btn-xs btn-info" title="Bayar diTempat"><i class="glyphicon glyphicon-ok"></i></button>
 
                     <button ng-click="destroy(data.id);" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
 

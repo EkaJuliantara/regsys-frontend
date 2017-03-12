@@ -54,7 +54,7 @@ i2cApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
                   }
                 } else {
                   value.colorStatus = "danger";
-                  value.statusIndex = "Proposal Ditolak";
+                  value.statusIndex = "Status Ditolak";
                   looping = false;
                 }
               } else {

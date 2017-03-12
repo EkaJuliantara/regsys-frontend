@@ -94,7 +94,6 @@
                             <button ng-click="updateStatus(0)" ng-show="dataTeam.status == 1" class="btn btn-xs btn-danger" title="Ditolak"><i class="fa fa-power-off"></i></button>
 
                             <button ng-click="confirmPayment()" ng-show="dataTeam.confirmed != 1  && dataTeam.receipt == null" class="btn btn-xs btn-info" title="Bayar diTempat"><i class="glyphicon glyphicon-ok"></i></button>
-
                           </td>
                         </tr>
                       </tbody>
@@ -115,7 +114,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="data in dataMember">
+                      <tr ng-show="dataMember.length == 0">
+                        <td colspan="2" style="text-align: center;">
+                          <i style="font-size: 40px; color: #c0392b;" class="glyphicon glyphicon-remove-sign"></i>
+                          <h3>Tidak Ada Anggota</h3>
+                        </td>
+                      </tr>
+                      <tr ng-show="dataMember.length != 0" ng-repeat="data in dataMember">
                         <td>{{ data.name }}</td>
                         <td><a href="http://api.ifest-uajy.com/storage/media/{{ data.media_name }}"><span class="label label-primary">Lihat</span></a></td>
                         <td><a href="http://api.ifest-uajy.com/storage/media/{{ data.student_name }}"><span class="label label-primary">Lihat</span></a></td>

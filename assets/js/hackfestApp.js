@@ -16,7 +16,7 @@ hackfestApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder){
 	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
 
 	$scope.index = function () {
-		$http.get(base_url+"/hackfest?category="+$scope.category).then( function (response) {
+		$http.get(base_url+"/hackfest").then( function (response) {
 			$scope.dataIndex = response.data.data;
 		});
 	}
