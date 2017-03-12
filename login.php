@@ -73,7 +73,32 @@
 
 <script>
 
-var loginApp = angular.module("loginApp", []);
+function httpInterceptor() {
+  return {
+    request: function(config) {
+      return config;
+    },
+
+    requestError: function(config) {
+      return config;
+    },
+
+    response: function(res) {
+      return res;
+    },
+
+    responseError: function(res) {
+      return res;
+    }
+  }
+}
+
+var loginApp = angular.module("loginApp", [])
+  .factory('httpInterceptor', httpInterceptor)
+  .config(function($httpProvider) {
+    $httpProvider.interceptors.push('httpInterceptor');
+  });
+
 loginApp.controller("loginCtrl", function($scope, $http, $window) {
 
   $scope.formData = {};
@@ -93,23 +118,27 @@ loginApp.controller("loginCtrl", function($scope, $http, $window) {
       data    : $.param($scope.formData),
       headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
      })
-    .then(function(data) {
-      if (data.data.status == 200) {
+    .then(function(response) {
+      switch (response.status) {
+        case 400:
+          $scope.errors = response.data.errors;
+          $scope.button = "MASUK";
+        break;
+        case 500:
+          $scope.errors.ise = "Mohon maaf terdapat kesalahan di bagian server.";
+          $scope.button = "MASUK";
+          break;
+        default:
+          $scope.button = "MASUK...";
 
-        $scope.button = "MASUK...";
-
-        $http({
-          method  : 'POST',
-          url     : 'proses-login.php',
-          data    : $.param({ id: data.data.data.id }),
-          headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
-        }).then(function(data) {
-          $window.location.href = 'index.php';
-        });
-
-      }else{
-        $scope.errors = data.data.errors;
-        $scope.button = "MASUK";
+          $http({
+            method  : 'POST',
+            url     : 'proses-login.php',
+            data    : $.param({ id: response.data.id }),
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+          }).then(function(data) {
+            $window.location.href = 'index.php';
+          });
       }
     });
   }
