@@ -120,7 +120,7 @@ loginApp.controller("loginCtrl", function($scope, $http, $window) {
      })
     .then(function(response) {
       switch (response.status) {
-        case 400:
+        case 404:
           $scope.errors = response.data.errors;
           $scope.button = "MASUK";
         break;
