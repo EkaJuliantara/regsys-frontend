@@ -134,7 +134,7 @@ loginApp.controller("loginCtrl", function($scope, $http, $window) {
           $http({
             method  : 'POST',
             url     : 'proses-login.php',
-            data    : $.param({ id: response.data.id }),
+            data    : $.param({ id: response.data.data.id }),
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
           }).then(function(data) {
             $window.location.href = 'index.php';
