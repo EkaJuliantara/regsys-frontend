@@ -1,77 +1,82 @@
 <?php
   ob_start();
   session_start();
-  if ($_SESSION['hackfest']['id']) {
+  // if ($_SESSION['dota']['id']) {
 ?>
 
 <?php require_once('header.php'); ?>
 
-<div class="content-wrapper">
-				<section class="content-header">
-								<h1> Dota 2 Competition</h1>
-								<ol class="breadcrumb">
-												<li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-												<li class="active">Dota 2 Competition</li>
-								</ol>
-				</section>
+<div ng-app="dotaApp" class="content-wrapper">
 
-				<section class="content">
-								
-								<div class="row">
-												<div class="col-md-12">
-																<div class="box box-solid box-success">
-																				<div class="box-header with-border">
-																						<h3 class="box-title">Participants</h3>
-																						<div class="box-tools pull-right">
-																								<span class="label label-primary"><b>3</b> Participants</span>
-																						</div><!-- /.box-tools -->
-																				</div><!-- /.box-header -->
-																				<div class="box-body">
-									            <table id="peserta" class="table table-striped">
-									              <thead>
-									                <tr>
-									                  <th>Email</th>
-									                  <th>Team Name</th>
-									                  <th>Date/Time Register</th>
-									                  <th>Status</th>
-									                  <th>Membership File</th>
-									                  <th>Action</th>
-									                </tr>
-									              </thead>
-									              <tbody>
-									                <tr>
-									                  <td>ottobimahp.9F28@yahoo.com</td>
-									                  <td>Knight</td>
-									                  <td class="sorting_1">2016-04-18 04:43:21</td>
-									                  <td>
-									                    <span class="label label-success">Active</span>
-									                  </td>
-									                  <td>
-									                      <span class="label label-default">File not found</span>
-									                  </td>
-									                  <td class="action">
-									                    <a href="dota-view.php" class="btn btn-info btn-xs" title="View Detail"><i class="fa fa-eye"></i></a>
-									                    <!--<a href="#" class="btn btn-success btn-xs" title="Make status becomes active">Active</a>-->
-									                    <a href="#" class="btn btn-warning btn-xs" title="Make status becomes non-active">Non-active</a>
-									                    <a href="#" class="btn btn-success btn-xs" title="Membership file has been valid">Valid</a>
-									                    <!--<a href="#" class="btn btn-warning btn-xs" title="Membership file has been non-valid">Nonvalid</a>-->
-									                    <a href="#" class="btn btn-danger btn-xs" title="Remove" data-toggle="modal" data-target=".bs-remove-modal-sm"><i class="fa fa-trash"></i></a>
-									                  </td>
-									                </tr>
-									              </tbody>
-									            </table><!-- /.table -->
-									          </div><!-- /.box-body -->
-																</div>
-												</div>
-								</div>
+  <section class="content-header">
+    <h1>
+      Dota Competition
+      <small>IFEST</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li class="active">Dota</li>
+    </ol>
+  </section>
 
-				</section>
+  <section ng-controller="indexCtrl" class="content">
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="box box-success box-solid">
+          <div class="box-header with-border">
+            <h3 class="box-title">Participants</h3>
+            <div class="box-tools pull-right">
+              <span class="label label-primary">
+                <b>{{ dataIndex.length }}</b> Participants
+              </span>
+            </div>
+          </div>
+          <div class="box-body">
+            <table datatable="ng" dt-options="dtOptions" class="table table-striped">
+              <thead>
+                <tr>
+                   <th>Nama Tim</th>
+                   <th>Email</th>
+                   <th>No.Telp</th>
+                   <th>Status</th>
+                   <th>Tgl Daftar</th>
+                   <th width="200px">Actions</th>
+                 </tr> 
+              </thead>
+              <tbody>
+                <tr ng-repeat="data in dataIndex">
+                  <td>{{ data.name }}</td>
+                  <td>{{ data.email }}</td>
+                  <td>{{ data.phone }}</td>
+                  <td>{{ data.status }}</td>
+                  <td>{{ data.created_at }}</td>
+                  <td>
+                    <a href="dota-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a> 
+                    
+                    <button ng-click="updateStatus( data.id, 1)" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i></button>
+
+                    <button ng-click="updateStatus( data.id, 0)" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-ok"></i></button>
+
+                    <button ng-click="destroy(data.id);" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
 </div>
 
 <?php require_once('footer.php'); ?>
 
 <?php
-  }else{
-    header("location: login.php");
-  }
+  // }else{
+  //   header("location: login.php");
+  // }
 ?>

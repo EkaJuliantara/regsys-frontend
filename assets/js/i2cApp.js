@@ -159,10 +159,6 @@ i2cApp.controller('getCtrl', function($scope, $http) {
           value.payment_name = response.data.data.file_name;
         });
       }); 
-
-
-      
-
     });
   }
 

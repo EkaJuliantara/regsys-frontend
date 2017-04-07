@@ -100,7 +100,6 @@ hackfestApp.controller('getCtrl', function($scope, $http) {
 
 	
 
-
 	$scope.updateStatus = function (status) {
 
 		$scope.dataDetail['status'] = status;
