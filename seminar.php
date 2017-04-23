@@ -40,7 +40,7 @@
                    <th>Email</th>
                    <th>No.Telp</th>
                    <th>Status</th>
-                   <th>Tgl Daftar</th>
+                   <th width="200px">Tgl Daftar</th>
                    <th width="200px">Actions</th>
                  </tr> 
               </thead>
@@ -49,16 +49,21 @@
                   <td>{{ data.name }}</td>
                   <td>{{ data.email }}</td>
                   <td>{{ data.phone }}</td>
-                  <td>{{ data.status }}</td>
+                  <td>
+                    <span ng-show="data.status == null && data.media_id == null" class="label label-danger">Belum Melakukan Pembayaran</span>
+                    <span ng-show="data.status == null && data.media_id != null" class="label label-warning">Menunggu Verifikasi</span>
+                    <span ng-show="data.status == 1" class="label label-success">Diterima</span>
+                    <span ng-show="data.status == 0" class="label label-danger">Ditolak</span>
+                  </td>
                   <td>{{ data.created_at }}</td>
                   <td>
                     <a title="Lihat" href="seminar-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a> 
                     
-                    <button title="Status:Diterima" ng-click="updateStatus( data.id, 1)" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i></button>
+                    <button ng-show="data.status != 1" title="Status:Diterima" ng-click="updateStatus( data.id, 1)" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i></button>
 
-                    <button title="Status:Ditolak" ng-click="updateStatus( data.id, 0)" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-ok"></i></button>
+                    <button ng-show="data.status != 1" title="Status:Ditolak" ng-click="updateStatus( data.id, 0)" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-ok"></i></button>
 
-                    <button title="Bayar diStand" ng-click="paymentBooth(data.id)" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-ok"></i></button>
+                    <button title="Bayar diStand" ng-show="data.status != 1 && data.media_id == null" ng-click="paymentBooth(data.id)" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-ok"></i></button>
 
                     <button title="Hapus" confirmed-click="destroy(data.id)" ng-confirm-click="Apakah anda yakin menghapus ini?" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button>
 

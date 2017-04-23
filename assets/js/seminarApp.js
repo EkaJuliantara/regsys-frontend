@@ -35,7 +35,8 @@ seminarApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 
 	$scope.paymentBooth = function (id) {
 
-		$scope.dataDetail['booth'] = true;
+		$scope.dataDetail['booth'] = 1;
+		$scope.dataDetail['status'] = 1;
 
 		$http({
 			method	: 	'PATCH',
@@ -90,6 +91,21 @@ seminarApp.controller('getCtrl', function($scope, $http) {
 	$scope.updateStatus =  function (status) {
 
 		$scope.dataDetail['status'] = status;
+
+		$http({
+			method	: 	'PATCH',
+			url 	: 	base_url + '/seminar/' + $scope.idTeam,
+			data 	: 	$.param($scope.dataDetail),
+			headers :  	{ 'Content-Type': 'application/x-www-form-urlencoded' }
+		}).then( function(data) {
+			$scope.index();
+		});
+	}
+
+	$scope.paymentBooth = function () {
+
+		$scope.dataDetail['booth'] = true;
+		$scope.dataDetail['status'] = true;
 
 		$http({
 			method	: 	'PATCH',

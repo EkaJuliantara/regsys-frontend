@@ -80,13 +80,16 @@
                             <a href="http://api.ifest-uajy.com/storage/media/{{ dataPeserta.media_name  }}"><span class="label label-primary">Lihat</span></a>
                           </td>
                           <td>
+                            <span ng-show="dataPeserta.status == null" class="label label-warning">Menunggu Verifikasi</span>
                             <span ng-show="dataPeserta.status == 1" class="label label-success">Diterima</span>
-                            <span ng-show="dataPeserta.status != 1" class="label label-danger">Ditolak</span>
+                            <span ng-show="dataPeserta.status == 0" class="label label-danger">Ditolak</span>
                           </td>
                           <td>
-                            <button ng-click="updateStatus(1)" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i></button>
+                            <button ng-show="dataPeserta.status != 1 && dataPeserta.media_id != null" ng-click="updateStatus(1)" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i></button>
 
-                            <button ng-click="updateStatus(0)" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-ok"></i></button>
+                            <button ng-show="dataPeserta.status != 1 && dataPeserta.media_id != null" ng-click="updateStatus(0)" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-ok"></i></button> 
+
+                            <button ng-show="dataPeserta.status != 1 && dataPeserta.media_id == null && dataPeserta.booth == 0" ng-click="paymentBooth()" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-ok"></i></button>
                           </td>
                         </tr>
                       </tbody>
