@@ -111,7 +111,6 @@ i2cApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
     });
   }
 
-
   $scope.destroy = function(id) {
 
     //$scope.idTeam = $('#btn-destroy').attr('id-team');

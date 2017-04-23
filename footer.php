@@ -28,6 +28,7 @@
     <script src="assets/js/i2cApp.js"></script>
     <script src="assets/js/hackfestApp.js"></script>
     <script src="assets/js/dotaApp.js"></script>
+    <script src="assets/js/seminarApp.js"></script>
 
   </body>
 </html>

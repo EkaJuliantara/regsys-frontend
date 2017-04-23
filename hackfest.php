@@ -1,7 +1,7 @@
 <?php
   ob_start();
   session_start();
-  // if ($_SESSION['hackfest']['id']) {
+  if ($_SESSION['hackfest']['id']) {
 ?>
 
 <?php require_once('header.php'); ?>
@@ -41,8 +41,8 @@
                    <th>Email</th>
                    <th>No.Telp</th>
                    <th>Status</th>
-                   <th>Tgl Daftar</th>
-                   <th width="200px">Actions</th>
+                   <th width="150px">Tgl Daftar</th>
+                   <th>Actions</th>
                  </tr> 
               </thead>
               <tbody>
@@ -51,35 +51,23 @@
                   <td>{{ data.email }}</td>
                   <td>{{ data.phone }}</td>
                   <td>
-                    <!-- <span ng-show="data.status == 1 &&  data.proposal != null && (data.receipt != null || data.confirmed == 1)" class="label label-primary">Data Lengkap</span>
-
-                    <span ng-show="data.status == 1 &&  data.proposal != null && (data.receipt == null && data.confirmed == 0)" class="label label-danger">Menunggu Pembayaran</span>
-
-                    <span ng-show="data.status == null && data.proposal == null && (data.receipt != null || data.confirmed == 1)" class="label label-danger" class="label label-warning">Dokumen Tidak Ada</span>
-
-                    <span ng-show="data.status == 0 &&  data.proposal != null && (data.receipt != null || data.confirmed == 1)" class="label label-danger" class="label label-warning">Proposal diTolak</span>
-
-                    <span ng-show="data.status == null && data.proposal == null && (data.receipt != null || data.confirmed == 1)" class="label label-danger" class="label label-warning">Menunggu Verifikasi Dokumen</span>
- -->
-    
-
+                    <span ng-show="data.receipt == null && data.booth == 0 && data.confirmed == null" class="label label-danger" >Belum Melakukan Pembayaran</span>
+                    <span ng-show="(data.receipt != null || data.booth != 0) && data.confirmed == null" class="label label-warning" >Menunggu Verifikasi Pembayaran</span>
+                    <span ng-show="data.confirmed == 1" class="label label-success" >Pembayaran Lengkap</span>
+                    <span ng-show="data.proposal == null && data.status == null && data.confirmed == 1" class="label label-danger" >Menunggu Dokumen Peserta</span>
+                    <span ng-show="data.proposal != null && data.status == null && data.confirmed == 1" class="label label-warning" >Menunggu Verifikasi Dokumen</span>
+                    <span ng-show="data.proposal != null && data.status == 0 && data.confirmed == 1" class="label label-danger" >Dokumen Ditolak</span>
+                    <span ng-show="data.proposal != null && data.status == 1 && data.confirmed == 1" class="label label-success" >Dokumen Lengkap</span>
                   </td>
                   <td>{{ data.created_at }}</td>
                   <td>
-                    <a href="hackfest-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a> 
-                    
-                    <button title="Status:Diterima" ng-show="data.proposal != null && data.status != 1" ng-click="updateStatus(data.id, 1);" class="btn btn-xs btn-info"><i class="fa fa-power-off"></i></button>
-
-                    <button title="Status:Ditolak" ng-show="data.proposal != null && data.status == 1" ng-click="updateStatus(data.id, 0);" class="btn btn-xs btn-warning"><i class="fa fa-power-off"></i></button>
-
-                    <button ng-show="data.proposal == null && data.confirmed != 1 && data.receipt == null" ng-click="confirmPayment(data.id)" ng-show="data.confirmed != 1" class="btn btn-xs btn-info" title="Bayar diTempat"><i class="glyphicon glyphicon-ok"></i></button>
-
-                    <button ng-show="data.proposal == null && data.confirmed != 1 && data.receipt == null" ng-click="confirmPayment(data.id)" ng-show="data.confirmed != 1" class="btn btn-xs btn-info" title="Pembayaran Diterima"><i class="glyphicon glyphicon-ok"></i></button>
-
-                    <button ng-show="data.proposal == null && data.confirmed != 1 && data.receipt == null" ng-click="confirmPayment(data.id)" ng-show="data.confirmed != 1" class="btn btn-xs btn-info" title="Pembayaran Ditolak"><i class="glyphicon glyphicon-ok"></i></button>
-
-                    <button ng-click="destroy(data.id);" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
-
+                    <a href="hackfest-view.php?id={{ data.id }}" title="View Detail"><button type="button" class="btn btn-xs bg-olive"><i class="fa fa-eye"></i></button></a>
+                    <button title="Pembayaran:Distand" ng-show="data.receipt == null && data.booth == 0 && data.confirmed == null" confirmed-click="paymentBooth(data.id, 1)" ng-confirm-click="Apakah anda yakin melakukan pembayaran ini?" class="btn btn-xs btn-primary"><i class="fa fa-power-off"></i></button>
+                    <button title="Pembayaran:Diterima" ng-show="data.receipt != null && data.booth == 0 && data.confirmed == null" ng-click="confirmPayment(data.id, 1)" class="btn btn-xs btn-info"><i class="fa fa-power-off"></i></button>
+                    <button title="Pembayaran:Ditolak" ng-show="data.receipt != null && data.booth == 0 && data.confirmed == null" ng-click="confirmPayment(data.id, 0)" class="btn btn-xs btn-danger"><i class="fa fa-power-off"></i></button>
+                    <button title="Dokumen:Diterima" ng-show="data.proposal != null && data.confirmed == 1" ng-click="updateStatus(data.id, 1)" class="btn btn-xs btn-info"><i class="fa fa-power-off"></i></button>
+                    <button title="Dokumen:Ditolak" ng-show="data.proposal != null && data.confirmed == 1" ng-click="updateStatus(data.id, 0)" class="btn btn-xs btn-danger"><i class="fa fa-power-off"></i></button>
+                    <button confirmed-click="destroy(data.id)" ng-confirm-click="Apakah anda yakin menghapus ini?" class="btn btn-xs bg-orange"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>
@@ -96,7 +84,7 @@
 <?php require_once('footer.php'); ?>
 
 <?php
-  // }else{
-  //   header("location: login.php");
-  // }
+  }else{
+    header("location: login.php");
+  }
 ?>

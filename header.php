@@ -103,8 +103,8 @@
                 <li><a href="i2c-ideaplikasi.php">Ide Aplikasi</a></li>               
               </ul>
             </li>
-            <li><a href="dota.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Dota 2 Competition</span></a></li>
-            <li><a href="upc.php" title="UAJY Programming Contest"><i class="fa fa-circle-o"></i> <span>Seminar Nasional</span></a></li>
+            <li><a href="seminar.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Seminar</span></a></li>
+            <!-- <li><a href="upc.php" title="UAJY Programming Contest"><i class="fa fa-circle-o"></i> <span>Seminar Nasional</span></a></li> -->
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
