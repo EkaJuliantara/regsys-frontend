@@ -80,9 +80,18 @@ hackfestApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 	}
 
 	$scope.destroy = function (id) {
-		$http.delete(base_url+"/hackfest/"+id).then(function (response) {
+		$http({
+			method 	: 'DELETE',
+			url		: base_url+'/hackfest/'+id,
+			data 	: $.param($scope.dataDetail),
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+		}).then( function (response) {
 			$scope.index();
 		});
+
+		/*$http.delete(base_url+"/hackfest/"+id).then(function (response) {
+			$scope.index();
+		});*/
 	}
 	$scope.index();
 
