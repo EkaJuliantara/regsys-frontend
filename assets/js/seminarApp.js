@@ -1,5 +1,6 @@
 var seminarApp = angular.module('seminarApp', ['datatables']);
 var base_url = 'http://api.ifest-uajy.com/v1';
+//var base_url = 'http://127.0.0.1:8000/v1';
 
 seminarApp.config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
@@ -30,6 +31,26 @@ seminarApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 	$scope.index = function () {
 		$http.get(base_url + "/seminar").then( function(response) {
 			$scope.dataIndex = response.data.data;
+		});
+	}
+
+  $scope.checkIn = function (id) {
+
+    if($scope.dataDetail['check_in'] == null){
+        $scope.dataDetail['check_in'] = 1;
+    }
+    else {
+      $scope.dataDetail['check_in'] = null;
+    }
+
+
+		$http({
+			method	: 	'PATCH',
+			url 	: 	base_url + '/seminar/' + id,
+			data 	: 	$.param($scope.dataDetail),
+			headers :  	{ 'Content-Type': 'application/x-www-form-urlencoded' }
+		}).then( function(data) {
+			$scope.index();
 		});
 	}
 
