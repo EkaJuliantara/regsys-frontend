@@ -26,7 +26,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
   </head>
   <body class="hold-transition skin-blue-light sidebar-mini">
     <div class="wrapper">
@@ -100,10 +100,11 @@
               <a href="#"><i class="fa fa-circle-o"></i> <span>I2C</span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="i2c-trailer.php">Trailer</a></li>
-                <li><a href="i2c-ideaplikasi.php">Ide Aplikasi</a></li>               
+                <li><a href="i2c-ideaplikasi.php">Ide Aplikasi</a></li>
               </ul>
             </li>
             <li><a href="seminar.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Seminar</span></a></li>
+            <li><a href="seminar-view-check.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Check In Seminar</span> </a></li>
             <!-- <li><a href="upc.php" title="UAJY Programming Contest"><i class="fa fa-circle-o"></i> <span>Seminar Nasional</span></a></li> -->
           </ul><!-- /.sidebar-menu -->
         </section>
