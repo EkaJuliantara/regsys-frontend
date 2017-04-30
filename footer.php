@@ -29,6 +29,7 @@
     <script src="assets/js/hackfestApp.js"></script>
     <script src="assets/js/dotaApp.js"></script>
     <script src="assets/js/seminarApp.js"></script>
+    <script src="assets/js/index.js"></script>
 
   </body>
 </html>
