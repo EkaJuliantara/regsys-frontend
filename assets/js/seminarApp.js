@@ -34,15 +34,23 @@ seminarApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 		});
 	}
 
+  $scope.cancelCheckIn = function (id) {
+
+    $scope.dataDetail['check_in'] = null;
+
+		$http({
+			method	: 	'PATCH',
+			url 	: 	base_url + '/seminar/' + id,
+			data 	: 	$.param($scope.dataDetail),
+			headers :  	{ 'Content-Type': 'application/x-www-form-urlencoded' }
+		}).then( function(data) {
+			$scope.index();
+		});
+  }
+
   $scope.checkIn = function (id) {
 
-    if($scope.dataDetail['check_in'] == null){
-        $scope.dataDetail['check_in'] = 1;
-    }
-    else {
-      $scope.dataDetail['check_in'] = null;
-    }
-
+    $scope.dataDetail['check_in'] = 1;
 
 		$http({
 			method	: 	'PATCH',
