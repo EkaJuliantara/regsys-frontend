@@ -48,7 +48,7 @@
                 </div><!-- /.info-box -->
               </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
-            <a class="btn btn-primary" href="http://localhost/regsys-frontend/i2c-trailer.php" role="button"><i class="fa fa-eye"></i> View Detail</a>
+            <a class="btn btn-primary" href="http://regsys.ifest-uajy.com/regsys-frontend/i2c-trailer.php" role="button"><i class="fa fa-eye"></i> View Detail</a>
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col-md-6 -->
@@ -75,7 +75,7 @@
                 </div><!-- /.info-box -->
               </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
-            <a class="btn btn-primary" href="http://localhost/regsys-frontend/i2c-ideaplikasi.php" role="button"><i class="fa fa-eye"></i> View Detail</a>
+            <a class="btn btn-primary" href="http://regsys.ifest-uajy.com/regsys-frontend/i2c-ideaplikasi.php" role="button"><i class="fa fa-eye"></i> View Detail</a>
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col-md-6 -->
@@ -104,7 +104,7 @@
                 </div><!-- /.info-box -->
               </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
-            <a class="btn btn-primary" href="http://localhost/regsys-frontend/hackfest.php" role="button"><i class="fa fa-eye"></i> View Detail</a>
+            <a class="btn btn-primary" href="http://regsys.ifest-uajy.com/regsys-frontend/hackfest.php" role="button"><i class="fa fa-eye"></i> View Detail</a>
          </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col-md-6 -->
@@ -130,7 +130,7 @@
                 </div><!-- /.info-box -->
               </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
-            <a class="btn btn-primary" href="http://localhost/regsys-frontend/seminar.php" role="button"><i class="fa fa-eye"></i> View Detail</a>
+            <a class="btn btn-primary" href="http://regsys.ifest-uajy.com/regsys-frontend/seminar.php" role="button"><i class="fa fa-eye"></i> View Detail</a>
           </div><!-- /.box-body -->
         </div><!-- /.box -->
       </div><!-- /.col-md-6 -->
