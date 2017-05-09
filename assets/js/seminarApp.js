@@ -26,7 +26,7 @@ seminarApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 	$scope.dataIndex = {};
 	$scope.dataDetail = {};
 
-	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
+	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(100);
 
 	$scope.index = function () {
 		$http.get(base_url + "/seminar").then( function(response) {
