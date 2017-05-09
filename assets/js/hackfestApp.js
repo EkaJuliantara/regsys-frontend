@@ -22,13 +22,13 @@ hackfestApp.directive('ngConfirmClick', [
 }])
 
 hackfestApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
-	
+
 
 	$scope.dataIndex = {};
 	$scope.dataDetail = {};
 	$scope.dataStatus = {};
 
-	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
+	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(25);
 
 	$scope.index = function () {
 		$http.get(base_url+"/hackfest").then( function(response) {
@@ -89,7 +89,7 @@ hackfestApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 });
 
 hackfestApp.controller('getCtrl', function($scope, $http) {
-	
+
 	$scope.dataTeam = {};
 	$scope.dataDetail = {};
 	$scope.dataStatus = {};
@@ -125,7 +125,7 @@ hackfestApp.controller('getCtrl', function($scope, $http) {
 				value.receipt_name = response.data.data.file_name;
 			});
 		}
-		
+
 	}
 
 	// $scope.getDocumentMember = function (value)
@@ -138,7 +138,7 @@ hackfestApp.controller('getCtrl', function($scope, $http) {
 
 	// }
 
-	
+
 
 	$scope.updateStatus = function (status) {
 
@@ -190,4 +190,3 @@ hackfestApp.controller('getCtrl', function($scope, $http) {
 	// $scope.getDocuments();
 
 });
-
