@@ -55,7 +55,7 @@
                     <span ng-show="data.status == 1" class="label label-success">Diterima</span>
                     <span ng-show="data.status == 0" class="label label-danger">Ditolak</span> -->
                     <span ng-show="data.check_in == null" class="label label-danger">Belum Check In</span>
-                    <span ng-show="data.check_in == 1" class="label label-danger">Sudah Check In</span>
+                    <span ng-show="data.check_in == 1" class="label label-success">Sudah Check In</span>
                   </td>
                   <td>{{ data.created_at }}</td>
                   <td>
@@ -70,7 +70,8 @@
                     <button title="Hapus" confirmed-click="destroy(data.id)" ng-confirm-click="Apakah anda yakin menghapus ini?" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button> -->
 
                     <button title="Check In" ng-show="data.check_in == null" ng-click="checkIn(data.id)" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-ok"></i></button>
-                    <button title="Cancel Check In" ng-show="data.check_in == 1" ng-click="checkIn(data.id)" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+
+                    <button title="Cancel Check In" ng-show="data.check_in == 1" ng-click="cancelCheckIn(data.id)" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
 
                   </td>
                 </tr>
