@@ -105,6 +105,7 @@
             </li>
             <li><a href="seminar.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Seminar</span></a></li>
             <li><a href="seminar-view-check.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Check In Seminar</span> </a></li>
+            <li><a href="seminar-view-checkout.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Check In Seminar</span> </a></li>
             <!-- <li><a href="upc.php" title="UAJY Programming Contest"><i class="fa fa-circle-o"></i> <span>Seminar Nasional</span></a></li> -->
           </ul><!-- /.sidebar-menu -->
         </section>
