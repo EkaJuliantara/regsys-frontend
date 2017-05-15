@@ -35,34 +35,6 @@ seminarApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 		});
 	}
 
-  $scope.cancelCheckIn = function (id) {
-
-    $scope.dataDetail['check_in'] = null;
-
-		$http({
-			method	: 	'PATCH',
-			url 	: 	base_url + '/seminar/' + id,
-			data 	: 	$.param($scope.dataDetail),
-			headers :  	{ 'Content-Type': 'application/x-www-form-urlencoded' }
-		}).then( function(data) {
-			$scope.index();
-		});
-  }
-
-  $scope.checkIn = function (id) {
-
-    $scope.dataDetail['check_in'] = 1;
-
-		$http({
-			method	: 	'PATCH',
-			url 	: 	base_url + '/seminar/' + id,
-			data 	: 	$.param($scope.dataDetail),
-			headers :  	{ 'Content-Type': 'application/x-www-form-urlencoded' }
-		}).then( function(data) {
-			$scope.index();
-		});
-	}
-
 	$scope.paymentBooth = function (id) {
 
 		$scope.dataDetail['booth'] = 1;
@@ -226,6 +198,51 @@ seminarApp.controller('getCtrl', function($scope, $http) {
 		});
 	}
 
+
+	$scope.index();
+
+});
+
+seminarApp.controller('indexCtrlIn', function($scope, $http, DTOptionsBuilder) {
+
+	$scope.dataIndex = {};
+	$scope.dataDetail = {};
+
+	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(100);
+
+	$scope.index = function () {
+		$http.get(base_url + "/seminar").then( function(response) {
+			$scope.dataIndex = response.data.data;
+		});
+	}
+
+  $scope.cancelCheckIn = function (id) {
+
+    $scope.dataDetail['check_in'] = null;
+
+		$http({
+			method	: 	'PATCH',
+			url 	: 	base_url + '/seminar/' + id,
+			data 	: 	$.param($scope.dataDetail),
+			headers :  	{ 'Content-Type': 'application/x-www-form-urlencoded' }
+		}).then( function(data) {
+			$scope.index();
+		});
+  }
+
+  $scope.checkIn = function (id) {
+
+    $scope.dataDetail['check_in'] = 1;
+
+		$http({
+			method	: 	'PATCH',
+			url 	: 	base_url + '/seminar/' + id,
+			data 	: 	$.param($scope.dataDetail),
+			headers :  	{ 'Content-Type': 'application/x-www-form-urlencoded' }
+		}).then( function(data) {
+			$scope.index();
+		});
+	}
 
 	$scope.index();
 
