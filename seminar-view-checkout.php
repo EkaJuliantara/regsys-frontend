@@ -1,7 +1,7 @@
 <?php
   ob_start();
   session_start();
-  if ($_SESSION['seminar']['id']) {
+  if ($_SESSION['hackfest']['id']) {
 ?>
 
 <?php require_once('header.php'); ?>
@@ -45,7 +45,7 @@
                  </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="data in dataIndex | filter: { check_in: "1" } ">
+                <tr ng-repeat='data in dataIndex| filter: {check_in:"1"}'>
                   <td>{{ data.name }}</td>
                   <td>{{ data.email }}</td>
                   <td>{{ data.phone }}</td>
@@ -55,7 +55,7 @@
                     <span ng-show="data.status == 1" class="label label-success">Diterima</span>
                     <span ng-show="data.status == 0" class="label label-danger">Ditolak</span> -->
                     <span ng-show="data.check_out == null" class="label label-danger">Belum Check Out</span>
-                    <span ng-show="data.check_out == 1" class="label label-danger">Sudah Check Out</span>
+                    <span ng-show="data.check_out == 1" class="label label-success">Sudah Check Out</span>
                   </td>
                   <td>{{ data.created_at }}</td>
                   <td>
@@ -69,8 +69,8 @@
 
                     <button title="Hapus" confirmed-click="destroy(data.id)" ng-confirm-click="Apakah anda yakin menghapus ini?" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button> -->
 
-                    <button title="Check In" ng-show="data.check_in == null" ng-click="checkIn(data.id)" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-ok"></i></button>
-                    <button title="Cancel Check In" ng-show="data.check_in == 1" ng-click="checkIn(data.id)" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+                    <button title="Check Out" ng-show="data.check_out == null" ng-click="checkOut(data.id)" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-ok"></i></button>
+                    <button title="Cancel Check Out" ng-show="data.check_out == 1" ng-click="cancelCheckOut(data.id)" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
 
                   </td>
                 </tr>
