@@ -19,7 +19,7 @@
     </ol>
   </section>
 
-  <section ng-controller="indexCtrl" class="content">
+  <section ng-controller="indexCtrlIn" class="content">
 
     <div class="row">
       <div class="col-sm-12">
@@ -45,7 +45,7 @@
                  </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="data in dataIndex">
+                <tr ng-repeat='data in dataIndex| filter: {status:"1"}'>
                   <td>{{ data.name }}</td>
                   <td>{{ data.email }}</td>
                   <td>{{ data.phone }}</td>
