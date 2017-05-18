@@ -58,14 +58,14 @@
                   <!-- The user image in the navbar-->
                   <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs">Eka Juliantara</span>
+                  <span class="hidden-xs">Panitia IFEST #5</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
                     <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
-                      Eka Juliantara
+                      Panitia IFEST #5
                       <small>Administrator</small>
                     </p>
                   </li>
@@ -103,9 +103,16 @@
                 <li><a href="i2c-ideaplikasi.php">Ide Aplikasi</a></li>
               </ul>
             </li>
-            <li><a href="seminar.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Seminar</span></a></li>
-            <li><a href="seminar-view-check.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Check In Seminar</span> </a></li>
-            <li><a href="seminar-view-checkout.php" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Check Out Seminar</span> </a></li>
+            <li class="treeview active">
+              <a href="#" title="Informatics Information Contest"><i class="fa fa-circle-o"></i> <span>Seminar</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a href="seminar.php">All</a></li>
+                <li><a href="seminar-checkin.php">Check-In (Already paid)</a></li>
+                <li><a href="seminar-checkout.php">Check-Out (Already check-in)</a></li>
+                <li><a href="seminar-vegetarians.php">Vegetarians</a></li>
+                <li><a href="seminar-notpaid.php">Not yet paid</a></li>
+              </ul>
+            </li>
             <!-- <li><a href="upc.php" title="UAJY Programming Contest"><i class="fa fa-circle-o"></i> <span>Seminar Nasional</span></a></li> -->
           </ul><!-- /.sidebar-menu -->
         </section>

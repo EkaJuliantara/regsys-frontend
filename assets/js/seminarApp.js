@@ -21,13 +21,20 @@ seminarApp.directive('ngConfirmClick', [
     };
 }])
 
-
 seminarApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 
 	$scope.dataIndex = {};
 	$scope.dataDetail = {};
 
 	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(100);
+
+	$scope.isVege = function(data) {
+	    return data.vegetarian == "1";
+	};
+
+	$scope.isNotPaid = function(data) {
+	    return data.status != "1";
+	};
 
 	$scope.index = function () {
 		$http.get(base_url + "/seminar").then( function(response) {
@@ -73,6 +80,7 @@ seminarApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 	$scope.index();
 
 });
+
 seminarApp.controller('indexCtrlout', function($scope, $http, DTOptionsBuilder) {
 
 	$scope.dataIndex = {};
@@ -80,15 +88,19 @@ seminarApp.controller('indexCtrlout', function($scope, $http, DTOptionsBuilder) 
 
 	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(100);
 
+	$scope.isCheckIn = function(data) {
+	    return data.check_in == "1";
+	};
+
 	$scope.index = function () {
 		$http.get(base_url + "/seminar").then( function(response) {
 			$scope.dataIndex = response.data.data;
 		});
 	}
 
-  $scope.cancelCheckOut = function (id) {
+	$scope.cancelCheckOut = function (id) {
 
-    $scope.dataDetail['check_out'] = null;
+	$scope.dataDetail['check_out'] = null;
 
 		$http({
 			method	: 	'PATCH',
@@ -98,11 +110,11 @@ seminarApp.controller('indexCtrlout', function($scope, $http, DTOptionsBuilder) 
 		}).then( function(data) {
 			$scope.index();
 		});
-  }
+	}
 
-  $scope.checkOut = function (id) {
+	$scope.checkOut = function (id) {
 
-    $scope.dataDetail['check_out'] = 1;
+	$scope.dataDetail['check_out'] = 1;
 
 		$http({
 			method	: 	'PATCH',
@@ -209,6 +221,10 @@ seminarApp.controller('indexCtrlIn', function($scope, $http, DTOptionsBuilder) {
 	$scope.dataDetail = {};
 
 	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(100);
+
+	$scope.isPaid = function(data) {
+	    return data.status == "1";
+	};
 
 	$scope.index = function () {
 		$http.get(base_url + "/seminar").then( function(response) {

@@ -28,7 +28,7 @@
             <h3 class="box-title">Participants</h3>
             <div class="box-tools pull-right">
               <span class="label label-primary">
-                <b>{{ dataIndex.length }}</b> Participants
+                <b>{{ filteredData.length }}</b> Participants
               </span>
             </div>
           </div>
@@ -45,7 +45,7 @@
                  </tr>
               </thead>
               <tbody>
-                <tr ng-repeat='data in dataIndex| filter: {status:"1"}'>
+                <tr ng-repeat='data in filteredData = (dataIndex | filter: isPaid)'>
                   <td>{{ data.name }}</td>
                   <td>{{ data.email }}</td>
                   <td>{{ data.phone }}</td>

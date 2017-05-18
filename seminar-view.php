@@ -51,6 +51,22 @@
                           <th>No. Telp</th>
                           <td>{{ dataPeserta.phone }}</td>
                         </tr>
+                        <tr>
+                          <th>Status</th>
+                          <td>
+                            <span ng-show="dataPeserta.status == null && dataPeserta.media_id == null" class="label label-danger">Belum Melakukan Pembayaran</span>
+                            <span ng-show="dataPeserta.status == null && dataPeserta.media_id != null" class="label label-warning">Menunggu Verifikasi</span>
+                            <span ng-show="dataPeserta.status == 1" class="label label-success">Diterima</span>
+                            <span ng-show="dataPeserta.status == 0" class="label label-danger">Ditolak</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Vegetarian</th>
+                          <td>
+                            <span ng-show="dataPeserta.vegetarian == 1" class="label label-success">Iya</span>
+                            <span ng-show="dataPeserta.vegetarian == 0" class="label label-danger">Tidak</span>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
