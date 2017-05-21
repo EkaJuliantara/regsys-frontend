@@ -111,6 +111,7 @@
                 <li><a href="seminar-checkout.php">Check-Out (Already check-in)</a></li>
                 <li><a href="seminar-vegetarians.php">Vegetarians</a></li>
                 <li><a href="seminar-notpaid.php">Not yet paid</a></li>
+                <li><a href="seminar-alreadycheckout.php">Already Check-Out</a></li>
               </ul>
             </li>
             <!-- <li><a href="upc.php" title="UAJY Programming Contest"><i class="fa fa-circle-o"></i> <span>Seminar Nasional</span></a></li> -->

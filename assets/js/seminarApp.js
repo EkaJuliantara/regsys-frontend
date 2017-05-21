@@ -92,6 +92,10 @@ seminarApp.controller('indexCtrlout', function($scope, $http, DTOptionsBuilder) 
 	    return data.check_in == "1";
 	};
 
+    $scope.isCheckOut = function(data) {
+        return data.check_out == "1";
+    }
+
 	$scope.index = function () {
 		$http.get(base_url + "/seminar").then( function(response) {
 			$scope.dataIndex = response.data.data;
