@@ -26,7 +26,7 @@ seminarApp.controller('indexCtrl', function($scope, $http, DTOptionsBuilder) {
 	$scope.dataIndex = {};
 	$scope.dataDetail = {};
 
-	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(100);
+	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
 
 	$scope.isVege = function(data) {
 	    return data.vegetarian == "1";
@@ -86,7 +86,7 @@ seminarApp.controller('indexCtrlout', function($scope, $http, DTOptionsBuilder) 
 	$scope.dataIndex = {};
 	$scope.dataDetail = {};
 
-	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(100);
+	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
 
 	$scope.isCheckIn = function(data) {
 	    return data.check_in == "1";
@@ -220,7 +220,7 @@ seminarApp.controller('indexCtrlIn', function($scope, $http, DTOptionsBuilder) {
 	$scope.dataIndex = {};
 	$scope.dataDetail = {};
 
-	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(100);
+	$scope.dtOptions = DTOptionsBuilder.newOptions().withDisplayLength(10);
 
 	$scope.isPaid = function(data) {
 	    return data.status == "1";
